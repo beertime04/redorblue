@@ -53,20 +53,19 @@
     }
     /* Aggiunto stile per colorare le lettere di verde e farle espandere */
     .letter {
-  color: #0f0; /* Colore verde intenso */
-  font-size: 50px; /* Dimensione del font */
-  position: absolute;
-  animation: rain 0.50s linear; /* Aggiungi un'animazione per il movimento delle lettere */
-  opacity: 2; /* Opacità per un effetto leggermente sfocato */
-  white-space: nowrap; /* Evita il ritorno a capo automatico */
-}
+      color: #0f0; /* Colore verde intenso */
+      font-size: 50px; /* Dimensione del font */
+      position: absolute;
+      animation: rain 0.50s linear; /* Aggiungi un'animazione per il movimento delle lettere */
+      opacity: 2; /* Opacità per un effetto leggermente sfocato */
+      white-space: nowrap; /* Evita il ritorno a capo automatico */
+    }
 
-@keyframes rain {
-  to {
-    transform: translateY(100%);
-  }
-}
-
+    @keyframes rain {
+      to {
+        transform: translateY(100%);
+      }
+    }
   </style>
 </head>
 <body>
@@ -76,7 +75,7 @@
     <button type="button" class="button blue">
       <span>Blue</span>
     </button>
-    <button type="button" class="button red">
+    <button type="button" class "button red">
       <span>Red</span>
     </button>
   </div>
@@ -121,7 +120,7 @@
           const randomX = Math.random() * 280;
           const randomY = Math.random() * 280;
           letterElement.style.left = `${randomX}%`;
-          letterElement.style.top = `${randomY}%`;
+          letterElement.style top = `${randomY}%`;
           return checkOverlap(letterElement, existingLetters);
         }
       }
@@ -162,11 +161,6 @@
       document.body.style.backgroundColor = "green";
     }
 
-    window.addEventListener("load", () => {
-      buttons[0].addEventListener("click", handleClick);
-      buttons[1].addEventListener("click", handleClick);
-    });
-
     function handleClick(event) {
       if (!isAnimationStarted) {
         startAnimation();
@@ -189,6 +183,10 @@
         buttons[0].disabled = true;
       }
     }
+
+    // Aggiungi gli eventi di click ai bottoni
+    buttons[0].addEventListener("click", handleClick);
+    buttons[1].addEventListener("click", handleClick);
   </script>
 </body>
 </html>
