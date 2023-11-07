@@ -146,10 +146,10 @@
       letterCount++; // Incrementa il conteggio delle lettere
     }
 
-    function startAnimation() {
-      isAnimationStarted = true;
-      addLetter();
-      setInterval(addLetter, 0.20); // Cambia da 100 a 20 millisecondi per rendere l'animazione più veloce
+     function startAnimation() {
+     isAnimationStarted = true;
+     addLetter();
+     setInterval(addLetter, 1); // Rallenta l'animazione a 1 secondo per lettera
     }
 
     function isScreenFull() {
