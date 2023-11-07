@@ -75,7 +75,7 @@
     <button type="button" class="button blue">
       <span>Blue</span>
     </button>
-    <button type="button" class "button red">
+    <button type="button" class="button red">
       <span>Red</span>
     </button>
   </div>
@@ -120,7 +120,7 @@
           const randomX = Math.random() * 280;
           const randomY = Math.random() * 280;
           letterElement.style.left = `${randomX}%`;
-          letterElement.style top = `${randomY}%`;
+          letterElement.style.top = `${randomY}%`;
           return checkOverlap(letterElement, existingLetters);
         }
       }
