@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <title>Blue or red?</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Foldit:wght@500">
   <style>
     body {
       background-color: #222;
@@ -53,20 +52,19 @@
     }
     /* Aggiunto stile per colorare le lettere di verde e farle espandere */
     .letter {
-  color: #0f0; /* Colore verde intenso */
-  font-size: 50px; /* Dimensione del font */
-  position: absolute;
-  animation: rain 0.50s linear; /* Aggiungi un'animazione per il movimento delle lettere */
-  opacity: 2; /* Opacità per un effetto leggermente sfocato */
-  white-space: nowrap; /* Evita il ritorno a capo automatico */
-}
+      color: #0f0; /* Colore verde intenso */
+      font-size: 50px; /* Dimensione del font */
+      position: absolute;
+      animation: rain 0.50s linear; /* Aggiungi un'animazione per il movimento delle lettere */
+      opacity: 2; /* Opacità per un effetto leggermente sfocato */
+      white-space: nowrap; /* Evita il ritorno a capo automatico */
+    }
 
-@keyframes rain {
-  to {
-    transform: translateY(100%);
-  }
-}
-
+    @keyframes rain {
+      to {
+        transform: translateY(100%);
+      }
+    }
   </style>
 </head>
 <body>
@@ -162,6 +160,18 @@
       document.body.style.backgroundColor = "green";
     }
 
+    // Recupera i conteggi salvati nel localStorage, se presenti
+    const savedBlueCount = localStorage.getItem("blueCount");
+    const savedRedCount = localStorage.getItem("redCount");
+
+    if (savedBlueCount) {
+      counterBlue.textContent = savedBlueCount;
+    }
+
+    if (savedRedCount) {
+      counterRed.textContent = savedRedCount;
+    }
+
     window.addEventListener("load", () => {
       buttons[0].addEventListener("click", handleClick);
       buttons[1].addEventListener("click", handleClick);
@@ -177,8 +187,12 @@
 
       if (color === "blue") {
         counterBlue.textContent = parseInt(counterBlue.textContent) + 1;
+        // Salva il conteggio blue nel localStorage
+        localStorage.setItem("blueCount", counterBlue.textContent);
       } else {
         counterRed.textContent = parseInt(counterRed.textContent) + 1;
+        // Salva il conteggio red nel localStorage
+        localStorage.setItem("redCount", counterRed.textContent);
       }
 
       button.disabled = true;
