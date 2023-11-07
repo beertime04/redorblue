@@ -90,104 +90,94 @@
 
   <script>
     const buttons = document.querySelectorAll(".button");
-    const counterBlue = document.getElementById("counter-blue");
-    const counterRed = document.getElementById("counter-red");
-    const lettersDiv = document.querySelector(".letters");
-    let isAnimationStarted = false;
+const counterBlue = document.getElementById("counter-blue");
+const counterRed = document.getElementById("counter-red");
+const lettersDiv = document.querySelector(".letters");
+let isAnimationStarted = false;
 
-    // Imposta un limite massimo di lettere
-    const maxLetters = 1000;
-    let letterCount = 0;
+// Imposta un limite massimo di lettere
+const maxLetters = 3000; // Modificato il limite massimo delle lettere
 
-    function createRandomLetter() {
-      const alphabet = "abcdefghijklmnopqrstuvwxyz가나다라마바사아자차카타파하абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
-      const randomIndex = Math.floor(Math.random() * alphabet.length);
-      return alphabet[randomIndex];
-    }
+function createRandomLetter() {
+  const alphabet =
+    "abcdefghijklmnopqrstuvwxyz가나다라마바사아자차카타파하абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+  const randomIndex = Math.floor(Math.random() * alphabet.length);
+  return alphabet[randomIndex];
+}
 
-    function checkOverlap(letterElement, existingLetters) {
-      const letterRect = letterElement.getBoundingClientRect();
+function checkOverlap(letterElement, existingLetters) {
+  const letterRect = letterElement.getBoundingClientRect();
 
-      for (const existingLetter of existingLetters) {
-        const existingRect = existingLetter.getBoundingClientRect();
+  for (const existingLetter of existingLetters) {
+    const existingRect = existingLetter.getBoundingClientRect();
 
-        if (
-          letterRect.left < existingRect.right &&
-          letterRect.right > existingRect.left &&
-          letterRect.top < existingRect.bottom &&
-          letterRect.bottom > existingRect.top
-        ) {
-          // Sovrapposizione rilevata, sposta la lettera
-          const randomX = Math.random() * 280;
-          const randomY = Math.random() * 280;
-          letterElement.style.left = `${randomX}%`;
-          letterElement.style.top = `${randomY}%`;
-          return checkOverlap(letterElement, existingLetters);
-        }
-      }
-    }
-
-    function addLetter() {
-      if (isScreenFull()) {
-        return;
-      }
-      const letter = createRandomLetter();
-      const letterElement = document.createElement("div");
-      letterElement.classList.add("letter");
-      letterElement.textContent = letter;
-
-      const randomX = Math.random() * 270;
-      const randomY = Math.random() * 270;
-
+    if (
+      letterRect.left < existingRect.right &&
+      letterRect.right > existingRect.left &&
+      letterRect.top < existingRect.bottom &&
+      letterRect.bottom > existingRect.top
+    ) {
+      // Sovrapposizione rilevata, sposta la lettera
+      const randomX = Math.random() * 280;
+      const randomY = Math.random() * 280;
       letterElement.style.left = `${randomX}%`;
       letterElement.style.top = `${randomY}%`;
-
-      checkOverlap(letterElement, lettersDiv.querySelectorAll('.letter'));
-
-      lettersDiv.appendChild(letterElement);
-      letterCount++; // Incrementa il conteggio delle lettere
+      return checkOverlap(letterElement, existingLetters);
     }
+  }
+}
 
-    function startAnimation() {
-      isAnimationStarted = true;
-      addLetter();
-      setInterval(addLetter, 0.20); // Cambia da 100 a 20 millisecondi per rendere l'animazione più veloce
-    }
+function addLetter() {
+  if (isScreenFull()) {
+    return;
+  }
+  const letter = createRandomLetter();
+  const letterElement = document.createElement("div");
+  letterElement.classList.add("letter");
+  letterElement.textContent = letter;
 
-    function isScreenFull() {
-      return letterCount >= 3000;
-    }
+  const randomX = Math.random() * 270;
+  const randomY = Math.random() * 270;
 
-    function makeSiteGreen() {
-      document.body.style.backgroundColor = "green";
-    }
+  letterElement.style.left = `${randomX}%`;
+  letterElement.style.top = `${randomY}%`;
 
-    window.addEventListener("load", () => {
-      buttons[0].addEventListener("click", handleClick);
-      buttons[1].addEventListener("click", handleClick);
-    });
+  checkOverlap(letterElement, lettersDiv.querySelectorAll('.letter'));
 
-    function handleClick(event) {
-      if (!isAnimationStarted) {
-        startAnimation();
-      }
+  lettersDiv.appendChild(letterElement);
+  letterCount++; // Incrementa il conteggio delle lettere
+}
 
-      const button = event.target;
-      const color = button.classList.contains("blue") ? "blue" : "red";
+function startAnimation() {
+  isAnimationStarted = true;
+  addLetter();
+  setInterval(addLetter, 0.20); // Cambia da 100 a 20 millisecondi per rendere l'animazione più veloce
+}
 
-      if (color === "blue") {
-        counterBlue.textContent = parseInt(counterBlue.textContent) + 1;
-      } else {
-        counterRed.textContent = parseInt(counterRed.textContent) + 1;
-      }
+function isScreenFull() {
+  return letterCount >= maxLetters;
+}
 
-      button.disabled = true;
+function makeSiteGreen() {
+  document.body.style.backgroundColor = "green";
+}
 
-      if (button.classList.contains("blue")) {
-        buttons[1].disabled = true;
-      } else {
-        buttons[0].disabled = true;
-      }
+window.addEventListener("load", () => {
+  buttons[0].addEventListener("click", () => handleClick("blue"));
+  buttons[1].addEventListener("click", () => handleClick("red"));
+});
+
+function handleClick(color) {
+  if (!isAnimationStarted) {
+    startAnimation();
+  }
+
+  const button = color === "blue" ? buttons[0] : buttons[1];
+  const counter = color === "blue" ? counterBlue : counterRed;
+
+  counter.textContent = parseInt(counter.textContent) + 1;
+  button.disabled = true;
+}
     }
   </script>
 </body>
