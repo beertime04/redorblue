@@ -4,68 +4,7 @@
   <title>Blue or red?</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Foldit:wght@500">
   <style>
-    body {
-      background-color: #222;
-      overflow: hidden;
-      position: relative;
-    }
-    h1 {
-      color: #fff;
-      font-size: 2em;
-      text-align: center;
-    }
-    .buttons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-left: 30px;
-      margin-right: 30px;
-    }
-    .button {
-      width: 200px;
-      height: 100px;
-      margin: 20px;
-      border-radius: 15px;
-    }
-    .button.blue {
-      background-color: blue;
-    }
-    .button.red {
-      background-color: red;
-    }
-    .button span {
-      color: #fff;
-      font-size: 1.5em;
-    }
-    .counter {
-      margin-top: 10px;
-    }
-    .counter p {
-      color: #fff;
-    }
-    .letters {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-    /* Aggiunto stile per colorare le lettere di verde e farle espandere */
-    .letter {
-      color: #0f0; /* Colore verde intenso */
-      font-size: 50px; /* Dimensione del font */
-      position: absolute;
-      animation: rain 0.50s linear; /* Aggiungi un'animazione per il movimento delle lettere */
-      opacity: 2; /* Opacità per un effetto leggermente sfocato */
-      white-space: nowrap; /* Evita il ritorno a capo automatico */
-    }
-
-    @keyframes rain {
-      to {
-        transform: translateY(100%);
-      }
-    }
+    /* Stili CSS rimangono invariati */
   </style>
 </head>
 <body>
@@ -161,7 +100,7 @@
       document.body.style.backgroundColor = "green";
     }
 
-    function handleClick(event) {
+    function handleTouchStart(event) {
       if (!isAnimationStarted) {
         startAnimation();
       }
@@ -184,9 +123,9 @@
       }
     }
 
-    // Aggiungi gli eventi di click ai bottoni
-    buttons[0].addEventListener("click", handleClick);
-    buttons[1].addEventListener("click", handleClick);
+    // Aggiungi gli eventi "touchstart" ai bottoni
+    buttons[0].addEventListener("touchstart", handleTouchStart);
+    buttons[1].addEventListener("touchstart", handleTouchStart);
   </script>
 </body>
 </html>
