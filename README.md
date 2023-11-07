@@ -1,7 +1,7 @@
-# red or blue?
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <title>Blue or red?</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Foldit:wght@500">
   <style>
     body {
@@ -70,6 +70,8 @@
   </style>
 </head>
 <body>
+  <h1>Blue or red?</h1>
+
   <div class="buttons">
     <button type="button" class="button blue">
       <span>Blue</span>
