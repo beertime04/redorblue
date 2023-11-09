@@ -141,8 +141,8 @@
             letterRect.bottom > existingRect.top
           ) {
             // Sovrapposizione rilevata, sposta la lettera
-            const randomX = Math.random() * 280;
-            const randomY = Math.random() * 280;
+            const randomX = Math.random() * 700;
+            const randomY = Math.random() * 700;
             letterElement.style.left = `${randomX}%`;
             letterElement.style.top = `${randomY}%`;
             return checkOverlap(letterElement, existingLetters);
