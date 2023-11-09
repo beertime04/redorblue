@@ -142,7 +142,7 @@
           ) {
             // Sovrapposizione rilevata, sposta la lettera
             const randomX = Math.random() * 270;
-            const randomY = Math.random() * 700;
+            const randomY = Math.random() * 270;
             letterElement.style.left = `${randomX}%`;
             letterElement.style.top = `${randomY}%`;
             return checkOverlap(letterElement, existingLetters);
@@ -159,8 +159,8 @@
         letterElement.classList.add("letter");
         letterElement.textContent = letter;
 
-        const randomX = Math.random() * 270;
-        const randomY = Math.random() * 270;
+        const randomX = Math.random() * 260;
+        const randomY = Math.random() * 700;
 
         letterElement.style.left = `${randomX}%`;
         letterElement.style.top = `${randomY}%`;
